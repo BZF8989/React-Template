@@ -1,0 +1,67 @@
+@import '~antd/dist/antd.css';
+
+
+.ant-layout-sider, .ant-layout-header, .ant-layout, .ant-layout-footer{
+  background: none;
+}
+
+
+.ant-layout-footer{
+  flex: auto;
+}
+
+.ant-layout-header{
+  padding: 0 20px;
+  background: #fff;
+}
+
+.float-right {
+  float: right;
+}
+
+.padding-5{
+  padding: 5px;
+}
+
+.currentPage{
+  display: inline;
+  float: none !important;
+  cursor: default !important;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+.ant-layout-content {
+  margin: 5px 5px;
+  flex: none;
+  overflow-x: visible !important ;
+}
+
+.ant-layout-sider{
+  position: fixed;
+  height: 100%;
+  z-index: 1000;
+  background: #fff;
+  top: 48px;
+  left: 0px;
+}
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.page{
+  width: 95%;
+  margin: auto;
+}
+
+.ant-menu{
+  background: #fff;
+}
+
+
+@media only screen and (max-width: 449px){
+  .hidden {
+    display: none;
+  }
+}
