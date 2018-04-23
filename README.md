@@ -1,8 +1,8 @@
-### React Dashboard Template
+# React Dashboard Template
 
 This project is built using React and [Ant Design](https://ant.design/)
 
-# Quick Start
+## Quick Start
 
 Run `npm install`
 
