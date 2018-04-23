@@ -19,7 +19,7 @@ export class Home extends Component {
     render() {
         return (
             <div>
-                <Row gutter={16}>
+                <Row gutter={32}>
                     <Col span={8}>
                         <Card title="Sample Column Of Data" hoverable={true}>
                             <p>Some context</p>

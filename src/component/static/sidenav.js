@@ -19,7 +19,7 @@ export class SideNav extends Component {
 
     openKeys(){
         const state = this.props.currentPage;
-        if(state == 'forms 1' || state == 'forms 2' || state == 'modal forms' || state == 'dynamic forms' ){
+        if(state === 'forms 1' || state === 'forms 2' || state === 'modal forms' || state === 'dynamic forms' ){
             return 'forms';
         }else{
             return '';

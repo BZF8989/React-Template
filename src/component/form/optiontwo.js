@@ -16,7 +16,7 @@ export class OptionTwo extends Component {
     render() {
         return (
             <div>
-                This is modal! :)
+                This is Forms 2! :)
             </div>
         );
     }

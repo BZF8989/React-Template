@@ -67,6 +67,7 @@ class App extends Component {
                 <p>footer</p>
               </Footer>
             </Affix> */}
+            <Footer></Footer>
           </Layout>
         </Layout>
       </div>

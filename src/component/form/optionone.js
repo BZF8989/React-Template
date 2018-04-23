@@ -16,7 +16,7 @@ export class OptionOne extends Component {
     render() {
         return (
             <div>
-                This is modal! :)
+                This is Forms 1! :)
             </div>
         );
     }
