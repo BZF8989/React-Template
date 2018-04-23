@@ -59,6 +59,10 @@
   background: #fff;
 }
 
+.ant-layout.ant-layout-has-sider{
+  flex-direction: column !important;
+}
+
 
 @media only screen and (max-width: 449px){
   .hidden {
