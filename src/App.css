@@ -5,6 +5,9 @@
   background: none;
 }
 
+.ant-btn{
+  margin: 5px;
+}
 
 .ant-layout-footer{
   flex: auto;

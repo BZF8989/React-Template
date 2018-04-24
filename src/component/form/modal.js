@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Modal, Button, notification, Row, Col, Divider, Radio, Form, Input } from 'antd';
+import { Modal, Button, notification, Row, Col, Divider, Radio, Form, Input, DatePicker, Icon } from 'antd';
 
-
+const { RangePicker } = DatePicker;
 const FormItem = Form.Item;
 
 const openSuccessNotification = () => {
     notification.open({
         message: 'Form Data Saved!',
         description: 'Your form data has been successfully saved!',
+        icon: <Icon type="check-circle" />
     });
 };
 
@@ -15,8 +16,18 @@ const openCancelNotification = () => {
     notification.open({
         message: 'Form Data Lost!',
         description: 'No Data was Saved!',
+        icon: <Icon type="close-circle" />
     });
 };
+
+const openValidationNotification = () => {
+    notification.open({
+        message: 'Form Data Incomplete!',
+        description: 'No Data was Saved!',
+        icon: <Icon type="warning" />
+    });
+};
+
 
 const CollectionCreateForm = Form.create()(
     class extends React.Component {
@@ -41,6 +52,12 @@ const CollectionCreateForm = Form.create()(
                         </FormItem>
                         <FormItem label="Description">
                             {getFieldDecorator('description')(<Input type="textarea" />)}
+                        </FormItem>
+                        <FormItem label="Project Date Range">
+                            {getFieldDecorator('Date Range', 
+                                {rules: [{required: true, message:'Please select start and end date'}],})
+                                (<RangePicker />)
+                            }
                         </FormItem>
                         <FormItem className="collection-create-form_last-form-item">
                             {getFieldDecorator('modifier', {
@@ -68,12 +85,20 @@ export class ModalForm extends Component {
 
         this.state = {
             showModal: false,
+            showOtherModal: false,
+
         }
     }
 
     showModal = () => {
         this.setState({
-            visible: true,
+            showModal: true,
+        });
+    }
+
+    showOtherModal = () => {
+        this.setState({
+            showOtherModal: true,
         });
     }
 
@@ -82,7 +107,7 @@ export class ModalForm extends Component {
         openCancelNotification();
         form.resetFields();
         this.setState({
-            visible: false,
+            showModal: false,
         });
     }
 
@@ -90,11 +115,11 @@ export class ModalForm extends Component {
         const form = this.formRef.props.form;
         form.validateFields((err, values) => {
           if (err) {
-            openCancelNotification();
+            openValidationNotification();
             return;
           }
           openSuccessNotification();
-          this.setState({ visible: false });
+          this.setState({ showModal: false });
         });
       }
 
@@ -109,11 +134,12 @@ export class ModalForm extends Component {
                 <Row type="flex" justify="center">
                     <Col span={8}>
                         <Button type="primary" onClick={this.showModal}>Create Git Repository</Button>
+                        <Button type="primary" onClick={this.showOtherModal}>Another Modal</Button>
                     </Col>
                 </Row>
                 <CollectionCreateForm
                     wrappedComponentRef={this.saveFormRef}
-                    visible={this.state.visible}
+                    visible={this.state.showModal}
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
                 />

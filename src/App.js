@@ -36,6 +36,7 @@ class App extends Component {
     const temp = e.key;
     this.setState({
       currentPage: temp,
+      sideNav: !this.state.sideNav,
     });
   }
 
