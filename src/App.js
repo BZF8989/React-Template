@@ -54,21 +54,20 @@ class App extends Component {
 
             {this.state.sideNav ?
               <Affix>
-              <Sider>
-                <SideNav currentPage={this.state.currentPage} updateCurrentPage={this.updateCurrentPage} />
-              </Sider>
+                <Sider>
+                  <SideNav currentPage={this.state.currentPage} updateCurrentPage={this.updateCurrentPage} />
+                </Sider>
               </Affix>
               : null}
             <Content className="page">
               <Main currentPage={this.state.currentPage}/>
             </Content>
 
-            {/* <Affix offsetBottom={0}>
+            <Affix offsetBottom={0} style={{position: 'fixed', bottom: 0, width: '100%' }}>
               <Footer>
-                <p>footer</p>
+                <p>This is a footer</p>
               </Footer>
-            </Affix> */}
-            <Footer></Footer>
+            </Affix>
           </Layout>
         </Layout>
       </div>

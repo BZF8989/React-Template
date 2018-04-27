@@ -34,7 +34,9 @@ export class Nav extends Component {
                     <Icon type="github" className="padding-5" />
 
                 </div>
-                <Button><Icon type='menu-unfold' /><span className="hidden"> Menu </span></Button>
+                {this.props.sideNav? 
+                <Button><Icon type="close-square-o" /><span className="hidden"> Close  </span></Button>:
+                <Button><Icon type='menu-unfold' /><span className="hidden"> Menu </span></Button>}
                 <Menu.Item key="title" disable className="currentPage">
                     <span className="capitalize">{this.props.currentPage} </span>
                 </Menu.Item>

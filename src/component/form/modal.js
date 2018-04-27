@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, notification, Row, Col, Divider, Radio, Form, Input, DatePicker, Icon } from 'antd';
+import { Modal, Button, notification, Row, Col, Divider, Radio, Form, Input, DatePicker, Icon, Rate, InputNumber } from 'antd';
 
 const { RangePicker } = DatePicker;
 const FormItem = Form.Item;
@@ -29,7 +29,7 @@ const openValidationNotification = () => {
 };
 
 
-const CollectionCreateForm = Form.create()(
+const RepositoryCreateForm = Form.create()(
     class extends React.Component {
         render() {
             const { visible, onCancel, onCreate, form } = this.props;
@@ -54,8 +54,8 @@ const CollectionCreateForm = Form.create()(
                             {getFieldDecorator('description')(<Input type="textarea" />)}
                         </FormItem>
                         <FormItem label="Project Date Range">
-                            {getFieldDecorator('Date Range', 
-                                {rules: [{required: true, message:'Please select start and end date'}],})
+                            {getFieldDecorator('Date Range',
+                                { rules: [{ required: true, message: 'Please select start and end date' }], })
                                 (<RangePicker />)
                             }
                         </FormItem>
@@ -76,6 +76,38 @@ const CollectionCreateForm = Form.create()(
     }
 );
 
+const OtherModalForm = Form.create()(
+    class extends React.Component {
+
+        render() {
+            const { visible, onCancel, onCreate, form, checkValue } = this.props;
+            const { getFieldDecorator } = form;
+            return (
+                <Modal
+                    visible={visible}
+                    title="Another Creative Modal Form"
+                    okText="Submit"
+                    onCancel={onCancel}
+                    onOk={onCreate}
+                >
+                    <Form layout="vertical">
+                        <FormItem label="Rate Me!">
+                            <Rate character={<Icon type="check" />} allowHalf onChange={(e) => this.props.updateCheck(e)} />
+                            <InputNumber
+                                min={0}
+                                max={5}
+                                style={{ marginLeft: 16 }}
+                                value={this.props.checkValue}
+                            />
+                        </FormItem>
+                    </Form>
+                </Modal>
+            );
+        }
+    }
+);
+
+
 
 
 export class ModalForm extends Component {
@@ -86,8 +118,15 @@ export class ModalForm extends Component {
         this.state = {
             showModal: false,
             showOtherModal: false,
-
+            checkValue: 2.5,
         }
+    }
+
+    updateCheck = (value) => {
+
+        this.setState({
+            checkValue: value,
+        });
     }
 
     showModal = () => {
@@ -108,20 +147,24 @@ export class ModalForm extends Component {
         form.resetFields();
         this.setState({
             showModal: false,
+            showOtherModal: false,
         });
     }
 
     handleCreate = () => {
         const form = this.formRef.props.form;
         form.validateFields((err, values) => {
-          if (err) {
-            openValidationNotification();
-            return;
-          }
-          openSuccessNotification();
-          this.setState({ showModal: false });
+            if (err) {
+                openValidationNotification();
+                return;
+            }
+            openSuccessNotification();
+            this.setState({
+                showModal: false,
+                showOtherModal: false,
+            });
         });
-      }
+    }
 
     saveFormRef = (formRef) => {
         this.formRef = formRef;
@@ -137,11 +180,20 @@ export class ModalForm extends Component {
                         <Button type="primary" onClick={this.showOtherModal}>Another Modal</Button>
                     </Col>
                 </Row>
-                <CollectionCreateForm
+                <RepositoryCreateForm
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.showModal}
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
+                />
+
+                <OtherModalForm
+                    wrappedComponentRef={this.saveFormRef}
+                    visible={this.state.showOtherModal}
+                    onCancel={this.handleCancel}
+                    onCreate={this.handleCreate}
+                    checkValue={this.state.checkValue}
+                    updateCheck={this.updateCheck}
                 />
 
             </div>

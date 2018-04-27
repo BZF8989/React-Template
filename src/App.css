@@ -11,6 +11,8 @@
 
 .ant-layout-footer{
   flex: auto;
+  width: 100%;
+  text-align: center;
 }
 
 .ant-layout-header{
