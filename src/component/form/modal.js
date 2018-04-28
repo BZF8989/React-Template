@@ -97,7 +97,7 @@ const OtherModalForm = Form.create()(
                                 min={0}
                                 max={5}
                                 style={{ marginLeft: 16 }}
-                                value={this.props.checkValue}
+                                value={checkValue}
                             />
                         </FormItem>
                     </Form>
