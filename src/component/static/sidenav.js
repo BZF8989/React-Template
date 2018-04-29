@@ -48,7 +48,7 @@ export class SideNav extends Component {
                         <Menu.Item key="dynamic forms">Dynamic Form</Menu.Item>
                     </MenuItemGroup>
                 </SubMenu>
-                <Menu.Item key="map"><Icon type="global" />Map</Menu.Item>
+                
             </Menu>
         );
     }
