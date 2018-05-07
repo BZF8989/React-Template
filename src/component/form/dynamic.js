@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button, Card } from 'antd';
+import { Form, Input, Icon, Button, Card, List } from 'antd';
 const FormItem = Form.Item;
 
 let uuid = 0;
 
 class DynamicFieldSet extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            todolist: {}
+        }
+    }
+
+
     remove = (k) => {
         const { form } = this.props;
         const keys = form.getFieldValue('keys');
@@ -25,6 +33,10 @@ class DynamicFieldSet extends React.Component {
         form.setFieldsValue({
             keys: nextKeys,
         });
+    }
+
+    saveItems = () => {
+        
     }
 
     handleSubmit = (e) => {
@@ -86,19 +98,35 @@ class DynamicFieldSet extends React.Component {
             );
         });
         return (
-            <Card title="To Do List">
-                <Form onSubmit={this.handleSubmit}>
-                    {formItems}
-                    <FormItem {...formItemLayoutWithOutLabel}>
-                        <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
-                            <Icon type="plus" /> Add To Do Item
-            </Button>
-                    </FormItem>
-                    <FormItem {...formItemLayoutWithOutLabel}>
-                        <Button type="primary" htmlType="submit">Submit</Button>
-                    </FormItem>
-                </Form>
-            </Card>
+            <div>
+                <Card title="To Do List">
+                    <Form onSubmit={this.handleSubmit}>
+                        {formItems}
+                        <FormItem {...formItemLayoutWithOutLabel}>
+                            <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
+                                <Icon type="plus" /> Add To Do Item
+                            </Button>
+                        </FormItem>
+                        <FormItem {...formItemLayoutWithOutLabel}>
+                            <Button type="primary" onClick={this.saveItems} >Submit</Button>
+                        </FormItem>
+                    </Form>
+                </Card>
+                <Card>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={this.state.todolist}
+                        renderItem={item => (
+                            <List.Item>
+                                <List.Item.Meta
+                                    avatar={<Button type="" onClick={this.complete} />}
+                                    description={item}
+                                />
+                            </List.Item>
+                        )}
+                    />
+                </Card>
+            </div>
         );
     }
 }
