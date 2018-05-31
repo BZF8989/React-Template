@@ -15,7 +15,7 @@ export class OptionTwo extends Component {
     }
 
     onChange = (value) => {
-        console.log(value);
+        //console.log(value);
         this.setState({
             inputValueMax: value[1],
             inputValueMin: value[0],
@@ -23,14 +23,14 @@ export class OptionTwo extends Component {
     }
 
     updateMax = (value) => {
-        console.log(value);
+        //console.log(value);
         this.setState({
             inputValueMax: value
         })
     }
 
     updateMin = (value) => {
-        console.log(value);
+        //console.log(value);
         this.setState({
             inputValueMin: value
         })
