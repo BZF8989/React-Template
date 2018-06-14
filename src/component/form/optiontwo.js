@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Slider, Divider, InputNumber } from 'antd';
+import { Row, Col, Slider, Divider, InputNumber, Select, Button } from 'antd';
+
+const Option = Select.Option;
 
 
 
@@ -11,7 +13,8 @@ export class OptionTwo extends Component {
         this.state = {
             inputValueMax: 50,
             inputValueMin: 20,
-        }
+        };
+
     }
 
     onChange = (value) => {
@@ -37,6 +40,7 @@ export class OptionTwo extends Component {
     }
 
     render() {
+        let children = this.state.freeDays;
         return (
             <div>
                 <h1>Special Forms!</h1>
@@ -69,6 +73,48 @@ export class OptionTwo extends Component {
                             value={[this.state.inputValueMin, this.state.inputValueMax]}
                             onChange={this.onChange}
                         />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={12}>
+                        <Divider/>
+                        <h2>Which days of the week are you free?</h2>
+                    </Col>
+                    <Col span={12}>
+                        <Divider/>
+                        <h2>Which meals would you prefer?</h2>
+                    </Col>
+                </Row>
+                <Row gutter={48}>
+                    <Col span={12}>
+                        <Select
+                            mode="tags"
+                            style={{ width: 400 }}
+                            placeholder="Please add a day you are free"
+
+                        >
+                            <Option value="Choose Option..." disabled >Choose Option...</Option>
+                            <Option value="Monday">Monday</Option>
+                            <Option value="Tuesday">Tuesday</Option>
+                            <Option value="Wednesday">Wednesday</Option>
+                            <Option value="Thursday">Thursday</Option>
+                            <Option value="Friday">Friday</Option>
+                            <Option value="Saturday">Saturday</Option>
+                            <Option value="Sunday">Sunday</Option>
+                        </Select>
+                    </Col>
+                    <Col span={12}>
+                        <Select
+                            mode="tags"
+                            style={{ width: 400 }}
+                            placeholder="Please meals you would like..."
+                        >
+                            <Option value="Choose Option..." disabled >Choose Option...</Option>
+                            <Option value="Breakfast">Breakfast</Option>
+                            <Option value="Lunch">Lunch</Option>
+                            <Option value="Dinner">Dinner</Option>
+                        </Select>
+
                     </Col>
                 </Row>
             </div>
