@@ -91,7 +91,7 @@ export class OptionTwo extends Component {
                             mode="tags"
                             style={{ width: 400 }}
                             placeholder="Please add a day you are free"
-
+                            className="days"
                         >
                             <Option value="Choose Option..." disabled >Choose Option...</Option>
                             <Option value="Monday">Monday</Option>
@@ -108,6 +108,7 @@ export class OptionTwo extends Component {
                             mode="tags"
                             style={{ width: 400 }}
                             placeholder="Please meals you would like..."
+                            className="meals"
                         >
                             <Option value="Choose Option..." disabled >Choose Option...</Option>
                             <Option value="Breakfast">Breakfast</Option>
